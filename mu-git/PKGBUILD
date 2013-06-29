@@ -7,7 +7,7 @@ pkgrel=2
 pkgdesc="mu and mu4e from git"
 arch=('i686' 'x86_64')
 url="http://www.djcbsoftware.nl/code/mu"
-depends=(emacs gtk2 xapian-core gmime sqlite3 webkitgtk2)
+depends=(emacs gtk2 xapian-core gmime sqlite3)
 makedepends=(git libtool)
 license=('GPL')
 provides=('mu')
@@ -19,7 +19,7 @@ _gitname="mu"
 build() {
   cd $srcdir
   msg "Connecting to the GIT server...."
-  
+
   if [[ -d $srcdir/$_gitname ]] ; then
     cd $_gitname
     git pull origin
@@ -27,18 +27,18 @@ build() {
   else
     git clone $_gitroot $_gitname
   fi
-  
+
   msg "GIT checkout done"
   msg "Starting make..."
-  
+
   rm -rf $srcdir/$_gitname-build
   git clone $srcdir/$_gitname $srcdir/$_gitname-build
-  
+
   cd $srcdir/$_gitname-build
 
   autoreconf -i
   sed -i 's|MUGDIR|"/usr/share/pixmaps"|' toys/mug/mug.c
-  ./configure --prefix=/usr --with-gui=gtk2 || return 1
+  ./configure --prefix=/usr --with-gui=gtk2 --without-webkitgtk2 || return 1
 
   make DESTDIR=$pkgdir install || return 1
 
@@ -49,5 +49,3 @@ build() {
 
   rm -rf $srcdir/$_gitname-build
 }
-
-
