@@ -38,7 +38,7 @@ build() {
 
   autoreconf -i
   sed -i 's|MUGDIR|"/usr/share/pixmaps"|' toys/mug/mug.c
-  ./configure --prefix=/usr --with-gui=gtk2 --without-webkitgtk2 || return 1
+  ./configure --prefix=/usr --with-gui=gtk2 --disable-webkit || return 1
 
   make DESTDIR=$pkgdir install || return 1
 
