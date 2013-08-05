@@ -9,7 +9,7 @@ pkgdesc="The extensible, customizable, self-documenting real-time display editor
 arch=('i686' 'x86_64')
 url="http://www.gnu.org/software/emacs/emacs.html"
 license=('GPL3')
-depends=('librsvg' 'gpm' 'giflib' 'libxpm' 'libotf' 'm17n-lib' 'hicolor-icon-theme' 'desktop-file-utils' 'alsa-lib' 'imagemagick')
+depends=('librsvg' 'gpm' 'libxpm' 'libotf' 'm17n-lib' 'hicolor-icon-theme' 'desktop-file-utils' 'alsa-lib' 'imagemagick')
 install=emacs.install
 source=(ftp://ftp.gnu.org/gnu/emacs/$pkgname-$pkgver.tar.xz{,.sig})
 md5sums=('ea9ed000ca165280265aabb55b9afbd7'
@@ -19,7 +19,7 @@ build() {
   cd "$srcdir"/$pkgname-$pkgver
   ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib \
     --localstatedir=/var --with-x-toolkit=gtk2 --with-xft \
-    --without-gconf --without-gsettings
+    --without-gconf --without-gsettings --without-gif
   make
 }
 
