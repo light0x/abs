@@ -26,8 +26,7 @@ build() {
   cd "$srcdir"/$pkgname-$pkgver
   ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib \
     --localstatedir=/var --with-x-toolkit=gtk2 --with-xft \
-    --without-gconf --without-gsettings
-# --without-gif
+    --without-gconf --without-gsettings --without-gif
   make
 }
 
